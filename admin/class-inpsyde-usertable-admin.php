@@ -74,8 +74,8 @@ class Inpsyde_UserTable_Admin {
 
 		// Main Menu Item.
 		add_menu_page(
-			'Inpsyde Plugin',
-			'Inpsyde Plugin',
+			'Inpsyde Settings',
+			'Inpsyde Settings',
 			'manage_options',
 			'inpsyde-endpoint-customization',
 			[ $this, 'page_options' ],
