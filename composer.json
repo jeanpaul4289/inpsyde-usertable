@@ -5,7 +5,7 @@
         "wordpress",
         "plugin"
     ],
-    "license": "GPL-3.0",
+    "license": "GPL-3.0-only",
     "homepage": "https://github.com/jeanpaul4289/inpsyde-usertable",
     "authors": [
         {
@@ -18,7 +18,8 @@
     "type": "wordpress-plugin",
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.1"
+        "php": ">=7.1",
+        "composer/installers": "^1.8"
     },
     "require-dev": {
         "inpsyde/php-coding-standards": "^0.13.4"
