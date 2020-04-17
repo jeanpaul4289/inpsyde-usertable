@@ -1,8 +1,10 @@
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-3.0.en.html)  
 
-# Sample Plugin
+# Inpsyde User Table
 **Tags:** Inpsyde, User Table
+
 **License:** GPLv3 or later
+
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html
 
 Make available a custom endpoint on the WordPress site. With “custom endpoint” we mean an arbitrary URL not recognized by WP as a standard URL, like a permalink or so.
@@ -30,19 +32,23 @@ You can also:
 Install with [Composer](https://getcomposer.org):
 
 ```sh
-$ composer require jeanpaul4289/inpsyde-usertable
+$ composer require jeanpaul4289/inpsyde-usertable:1.0.0
 ```
 
 ### Requirements
 
-This package requires PHP 7.2 or higher.
+* WordPress 5.4.
+* PHP 7.2 or higher.
 
+## Screenshots
+![Screenshot 1](assets/usertable-settings.PNG)
+
+![Screenshot 2](assets/usertable.PNG)
 
 ### License
 ----
 
 GNU GPL v3
-
 
    [jQuery Datatable]: <https://datatables.net/>
    [jQuery]: <http://jquery.com>
