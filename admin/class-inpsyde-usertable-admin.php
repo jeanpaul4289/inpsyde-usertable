@@ -12,7 +12,7 @@
 /**
  * The admin-panel-specific functionality of the plugin.
  *
- * Defines the plugin name, version, and adds the menu and settings to the admin panel in Wordpress.
+ * Defines the plugin name, version, and adds the menu and settings to the admin panel in WordPress.
  *
  * @package Inpsyde_UserTable
  * @subpackage Inpsyde_UserTable/admin
@@ -98,7 +98,7 @@ class Inpsyde_UserTable_Admin {
 
 	/**
 	 * Registers settings fields with WordPress
-	 * 
+	 *
 	 * @since 1.0.0
 	 * @return void
 	 */
@@ -132,7 +132,7 @@ class Inpsyde_UserTable_Admin {
 
 	/**
 	 * Registers settings sections with WordPress
-	 * 
+	 *
 	 * @since 1.0.0
 	 * @return void
 	 */
@@ -191,7 +191,7 @@ class Inpsyde_UserTable_Admin {
 
 	/**
 	 * Sets the class variable $options
-	 * 
+	 *
 	 * @since 1.0.0
 	 * @return void
 	 */

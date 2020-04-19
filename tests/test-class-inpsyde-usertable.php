@@ -84,7 +84,7 @@ class Inpsyde_UserTable_Test extends WP_UnitTestCase {
 	 */
 	public function test_get_plugin_version() {
 		$class_instance = new Inpsyde_UserTable();
-		$this->assertEquals( '1.0.4', $class_instance->get_version() );
+		$this->assertEquals( '1.0.6', $class_instance->get_version() );
 	}
 
 	/**

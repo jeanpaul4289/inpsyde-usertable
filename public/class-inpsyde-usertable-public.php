@@ -110,10 +110,12 @@ class Inpsyde_UserTable_Public {
 		wp_enqueue_script( 'jquery_script', 'http://code.jquery.com/jquery-1.11.2.min.js' );
 		wp_enqueue_script( 'jquery_datatable_script', 'http://cdn.datatables.net/1.10.20/js/jquery.dataTables.js' );
 		wp_enqueue_script( 'custom_usertable_script', plugin_dir_url( __FILE__ ) . 'js/usertable.js' );
-		wp_localize_script( 'custom_usertable_script', 'my_script_object', array(
-			'ajax_url'   => admin_url( 'admin-ajax.php' ),
-			'user_nonce' => wp_create_nonce( 'user_nonce' ),
-		) );
+		wp_localize_script(
+			'custom_usertable_script', 'my_script_object', array(
+				'ajax_url'   => admin_url( 'admin-ajax.php' ),
+				'user_nonce' => wp_create_nonce( 'user_nonce' ),
+			)
+		);
 		wp_enqueue_script( 'jquery_ui_script', 'https://code.jquery.com/ui/1.12.1/jquery-ui.js' );
 
 	}
@@ -151,18 +153,25 @@ class Inpsyde_UserTable_Public {
 	}
 
 	/**
-	 * Getting an specific user
+	 * Getting an specific user.
 	 *
 	 * @since 1.0.0
 	 * @return void
 	 */
 	public function get_user() {
 
-		if ( isset( $_POST['user_id'], $_POST['action'], $_POST['user_nonce'] ) ) {
-			if ( wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['user_nonce'] ) ), 'user_nonce' ) ) {
-				$user_id = sanitize_text_field( wp_unslash( $_POST['user_id'] ) ); // input var okay.
-				$action  = sanitize_text_field( wp_unslash( $_POST['action'] ) ); // input var okay.
-				echo wp_kses( $this->remote_response_handler( $this->users_url . $user_id ), [] );
+		if ( ! empty( $_POST ) ) {
+			$post       = $_POST; // WPCS: CSRF ok.
+			$user_id    = $post['user_id'];
+			$action     = $post['action'];
+			$user_nonce = $post['user_nonce'];
+
+			if ( ! empty( $user_id ) && ! empty( $action ) && ! empty( $user_nonce ) ) {
+				if ( wp_verify_nonce( sanitize_text_field( wp_unslash( $user_nonce ) ), 'user_nonce' ) ) {
+					$user_id = sanitize_text_field( wp_unslash( $user_id ) ); // input var okay.
+					$action  = sanitize_text_field( wp_unslash( $action ) ); // input var okay.
+					echo wp_kses( $this->remote_response_handler( $this->users_url . $user_id ), [] );
+				}
 			}
 		}
 		exit();
@@ -190,7 +199,7 @@ class Inpsyde_UserTable_Public {
 
 	/**
 	 * Sets the class variable $options
-	 * 
+	 *
 	 * @since 1.0.0
 	 * @return void
 	 */
@@ -199,6 +208,5 @@ class Inpsyde_UserTable_Public {
 		$this->options = get_option( 'ce_name' );
 
 	}
-
 
 }

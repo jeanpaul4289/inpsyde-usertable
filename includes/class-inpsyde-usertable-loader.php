@@ -70,7 +70,7 @@ class Inpsyde_UserTable_Loader {
 	 * @param string       $callback The name of the function definition on the $component.
 	 * @param int Optional $priority The priority at which the function should be fired.
 	 * @param int Optional $accepted_args The number of arguments that should be passed to the $callback.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function add_action( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
@@ -86,7 +86,7 @@ class Inpsyde_UserTable_Loader {
 	 * @param string       $callback The name of the function definition on the $component.
 	 * @param int Optional $priority The priority at which the function should be fired.
 	 * @param int Optional $accepted_args The number of arguments that should be passed to the $callback.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
@@ -163,7 +163,7 @@ class Inpsyde_UserTable_Loader {
 	 * @param string $hook The name of the WordPress filter that is being registered.
 	 * @param object $component A reference to the instance of the object on which the filter is defined.
 	 * @param string $callback The name of the function definition on the $component.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function remove( $hook, $component, $callback ) {

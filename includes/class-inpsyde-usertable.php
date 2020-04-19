@@ -57,6 +57,24 @@ class Inpsyde_UserTable {
 	protected $version;
 
 	/**
+	 * Instance of the admin class.
+	 *
+	 * @since 1.0.6
+	 * @access private
+	 * @var object|Inpsyde_UserTable_Admin
+	 */
+	private static $admin_instance;
+
+	/**
+	 * Instance of the public class.
+	 *
+	 * @since 1.0.6
+	 * @access private
+	 * @var object|Inpsyde_UserTable_Public
+	 */
+	private static $public_instance;
+
+	/**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -68,7 +86,7 @@ class Inpsyde_UserTable {
 	public function __construct() {
 
 		$this->plugin_name = 'inpsyde-usertable';
-		$this->version     = '1.0.0';
+		$this->version     = '1.0.6';
 		$this->users_url   = 'http://jsonplaceholder.typicode.com/users/';
 
 		$this->load_dependencies();
@@ -124,12 +142,14 @@ class Inpsyde_UserTable {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Inpsyde_UserTable_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin         = new Inpsyde_UserTable_Admin( $this->get_plugin_name(), $this->get_version() );
+		self::$admin_instance = $plugin_admin;
 
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_fields' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_sections' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
+
 	}
 
 	/**
@@ -142,7 +162,8 @@ class Inpsyde_UserTable {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Inpsyde_UserTable_Public( $this->get_plugin_name(), $this->get_version(), $this->get_users_url() );
+		$plugin_public         = new Inpsyde_UserTable_Public( $this->get_plugin_name(), $this->get_version(), $this->get_users_url() );
+		self::$public_instance = $plugin_public;
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'remove_enqueued_scripts_styles', 19 );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles', 20 );
@@ -152,6 +173,37 @@ class Inpsyde_UserTable {
 		$this->loader->add_action( 'wp_ajax_get_user', $plugin_public, 'get_user' );
 		$this->loader->add_action( 'wp_ajax_nopriv_get_user', $plugin_public, 'get_user' );
 		$this->loader->add_action( 'template_include', $plugin_public, 'render_user_table' );
+
+	}
+
+	/**
+	 * Get admin instance.
+	 *
+	 * @since 1.0.6
+	 * @return object|\Inpsyde_UserTable_Admin
+	 */
+	public function get_admin_instance() {
+
+		if ( is_null( self::$admin_instance ) ) {
+			self::$admin_instance = new Inpsyde_UserTable_Admin();
+		}
+		return self::$admin_instance;
+
+	}
+
+	/**
+	 * Get public instance.
+	 *
+	 * @since 1.0.6
+	 * @return object|\Inpsyde_UserTable_Public
+	 */
+	public function get_public_instance() {
+
+		if ( is_null( self::$public_instance ) ) {
+			self::$public_instance = new Inpsyde_UserTable_Public();
+		}
+		return self::$public_instance;
+
 	}
 
 	/**
@@ -161,7 +213,9 @@ class Inpsyde_UserTable {
 	 * @return void
 	 */
 	public function run() {
+
 		$this->loader->run();
+
 	}
 
 	/**
@@ -172,7 +226,9 @@ class Inpsyde_UserTable {
 	 * @return string The name of the plugin.
 	 */
 	public function get_plugin_name() {
+
 		return $this->plugin_name;
+
 	}
 
 	/**
@@ -182,7 +238,9 @@ class Inpsyde_UserTable {
 	 * @return Inpsyde_UserTable_Loader Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
+
 		return $this->loader;
+
 	}
 
 	/**
@@ -192,7 +250,9 @@ class Inpsyde_UserTable {
 	 * @return string The version number of the plugin.
 	 */
 	public function get_version() {
+
 		return $this->version;
+
 	}
 
 	/**
@@ -202,7 +262,9 @@ class Inpsyde_UserTable {
 	 * @return string The users url of the plugin..
 	 */
 	public function get_users_url() {
+
 		return $this->users_url;
+
 	}
 
 }
