@@ -86,7 +86,7 @@ class Inpsyde_UserTable {
 	public function __construct() {
 
 		$this->plugin_name = 'inpsyde-usertable';
-		$this->version     = '1.0.6';
+		$this->version     = '1.0.7';
 		$this->users_url   = 'http://jsonplaceholder.typicode.com/users/';
 
 		$this->load_dependencies();
@@ -164,7 +164,6 @@ class Inpsyde_UserTable {
 
 		$plugin_public         = new Inpsyde_UserTable_Public( $this->get_plugin_name(), $this->get_version(), $this->get_users_url() );
 		self::$public_instance = $plugin_public;
-
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'remove_enqueued_scripts_styles', 19 );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles', 20 );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts', 20 );
@@ -173,7 +172,8 @@ class Inpsyde_UserTable {
 		$this->loader->add_action( 'wp_ajax_get_user', $plugin_public, 'get_user' );
 		$this->loader->add_action( 'wp_ajax_nopriv_get_user', $plugin_public, 'get_user' );
 		$this->loader->add_action( 'template_include', $plugin_public, 'render_user_table' );
-
+		$this->loader->add_filter( 'pre_get_document_title', $plugin_public, 'get_page_title' );
+		
 	}
 
 	/**

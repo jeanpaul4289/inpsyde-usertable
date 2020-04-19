@@ -61,6 +61,7 @@ class Inpsyde_UserTable_Public {
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
 		$this->users_url   = $users_url;
+		$this->page_title  = "Inpsyde UserTable - Custom Page";
 
 		$this->set_options();
 
@@ -175,6 +176,18 @@ class Inpsyde_UserTable_Public {
 			}
 		}
 		exit();
+
+	}
+
+	/**
+	 * Change page title
+	 *
+	 * @since 1.0.7
+	 * @return string;
+	 */
+	public function get_page_title () {
+
+		return $this->page_title;
 
 	}
 

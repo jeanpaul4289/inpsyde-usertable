@@ -41,7 +41,7 @@ Assuming you are in the root installation of your WordPress Site, add the follow
 Install with [Composer](https://getcomposer.org):
 ```sh
 $ composer config github-oauth.github.com eef8db8a79dd3fd91ec8b4f32e858e7b2b17bae7  
-$ composer require jeanpaul4289/inpsyde-usertable:1.0.5
+$ composer require jeanpaul4289/inpsyde-usertable:1.0.7
 $ composer require --dev phpunit/phpunit ^7
 ```
 ### Testing
