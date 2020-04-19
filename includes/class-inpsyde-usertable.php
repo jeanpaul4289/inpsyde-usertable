@@ -43,7 +43,7 @@ class Inpsyde_UserTable {
 	 *
 	 * @since 1.0.0
 	 * @access protected
-	 * @var string  $plugin_name The string used to uniquely identify this plugin.
+	 * @var string $plugin_name The string used to uniquely identify this plugin.
 	 */
 	protected $plugin_name;
 
@@ -52,7 +52,7 @@ class Inpsyde_UserTable {
 	 *
 	 * @since 1.0.0
 	 * @access protected
-	 * @var string  $version The current version of the plugin.
+	 * @var string $version The current version of the plugin.
 	 */
 	protected $version;
 
@@ -60,7 +60,7 @@ class Inpsyde_UserTable {
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
-	 * Load the dependencies, define the locale, and set the hooks for the Dashboard and
+	 * Load the dependencies, define the locale, and set the hooks for the Admin Panel and
 	 * the public-facing side of the site.
 	 *
 	 * @since 1.0.0
@@ -82,7 +82,7 @@ class Inpsyde_UserTable {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - Inpsyde_UserTable_Loader. Orchestrates the hooks of the plugin.
-	 * - Inpsyde_UserTable_Admin. Defines all hooks for the dashboard.
+	 * - Inpsyde_UserTable_Admin. Defines all hooks for the admin panel.
 	 * - Inpsyde_UserTable_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
@@ -100,7 +100,7 @@ class Inpsyde_UserTable {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-inpsyde-usertable-loader.php';
 
 		/**
-		 * The class responsible for defining all actions that occur in the Dashboard.
+		 * The class responsible for defining all actions that occur in the Admin Panel.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-inpsyde-usertable-admin.php';
 
@@ -120,6 +120,7 @@ class Inpsyde_UserTable {
 	 *
 	 * @since 1.0.0
 	 * @access private
+	 * @return void
 	 */
 	private function define_admin_hooks() {
 
@@ -137,6 +138,7 @@ class Inpsyde_UserTable {
 	 *
 	 * @since 1.0.0
 	 * @access private
+	 * @return void
 	 */
 	private function define_public_hooks() {
 
@@ -156,6 +158,7 @@ class Inpsyde_UserTable {
 	 * Run the loader to execute all of the hooks with WordPress.
 	 *
 	 * @since 1.0.0
+	 * @return void
 	 */
 	public function run() {
 		$this->loader->run();
@@ -166,7 +169,7 @@ class Inpsyde_UserTable {
 	 * WordPress and to define internationalization functionality.
 	 *
 	 * @since 1.0.0
-	 * @return string  The name of the plugin.
+	 * @return string The name of the plugin.
 	 */
 	public function get_plugin_name() {
 		return $this->plugin_name;
@@ -186,7 +189,7 @@ class Inpsyde_UserTable {
 	 * Retrieve the version number of the plugin.
 	 *
 	 * @since 1.0.0
-	 * @return string  The version number of the plugin.
+	 * @return string The version number of the plugin.
 	 */
 	public function get_version() {
 		return $this->version;
@@ -196,7 +199,7 @@ class Inpsyde_UserTable {
 	 * Retrieve the users url of the plugin.
 	 *
 	 * @since 1.0.0
-	 * @return string  The users url of the plugin..
+	 * @return string The users url of the plugin..
 	 */
 	public function get_users_url() {
 		return $this->users_url;

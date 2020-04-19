@@ -70,6 +70,8 @@ class Inpsyde_UserTable_Loader {
 	 * @param string       $callback The name of the function definition on the $component.
 	 * @param int Optional $priority The priority at which the function should be fired.
 	 * @param int Optional $accepted_args The number of arguments that should be passed to the $callback.
+	 * 
+	 * @return void
 	 */
 	public function add_action( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
 		$this->actions = $this->add( $this->actions, $hook, $component, $callback, $priority, $accepted_args );
@@ -84,14 +86,15 @@ class Inpsyde_UserTable_Loader {
 	 * @param string       $callback The name of the function definition on the $component.
 	 * @param int Optional $priority The priority at which the function should be fired.
 	 * @param int Optional $accepted_args The number of arguments that should be passed to the $callback.
+	 * 
+	 * @return void
 	 */
 	public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
 		$this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );
 	}
 
 	/**
-	 * A utility function that is used to register the actions and hooks into a single
-	 * collection.
+	 * A utility function that is used to register the actions and hooks into a single collection.
 	 *
 	 * @since 1.0.0
 	 * @access private
@@ -124,10 +127,12 @@ class Inpsyde_UserTable_Loader {
 	 * @return object|\Inpsyde_UserTable_Loader
 	 */
 	public static function get_instance() {
+
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new Inpsyde_UserTable_Loader();
 		}
 		return self::$instance;
+
 	}
 
 	/**
@@ -142,7 +147,9 @@ class Inpsyde_UserTable_Loader {
 	 * @return string
 	 */
 	protected function hook_index( $hook, $component, $callback ) {
+
 		return md5( $hook . get_class( $component ) . $callback );
+
 	}
 
 	/**
@@ -156,6 +163,8 @@ class Inpsyde_UserTable_Loader {
 	 * @param string $hook The name of the WordPress filter that is being registered.
 	 * @param object $component A reference to the instance of the object on which the filter is defined.
 	 * @param string $callback The name of the function definition on the $component.
+	 * 
+	 * @return void
 	 */
 	public function remove( $hook, $component, $callback ) {
 
@@ -175,6 +184,7 @@ class Inpsyde_UserTable_Loader {
 	 * Register the filters and actions with WordPress.
 	 *
 	 * @since 1.0.0
+	 * @return void
 	 */
 	public function run() {
 

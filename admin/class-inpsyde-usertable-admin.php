@@ -1,6 +1,6 @@
 <?php
 /**
- * The dashboard-specific functionality of the plugin.
+ * The admin-panel-specific functionality of the plugin.
  *
  * @link https://github.com/jeanpaul4289
  * @since 1.0.0
@@ -10,10 +10,9 @@
  */
 
 /**
- * The dashboard-specific functionality of the plugin.
+ * The admin-panel-specific functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the dashboard-specific stylesheet and JavaScript.
+ * Defines the plugin name, version, and adds the menu and settings to the admin panel in Wordpress.
  *
  * @package Inpsyde_UserTable
  * @subpackage Inpsyde_UserTable/admin
@@ -26,7 +25,7 @@ class Inpsyde_UserTable_Admin {
 	 *
 	 * @since 1.0.0
 	 * @access private
-	 * @var string  $options  The plugin options.
+	 * @var string $options The plugin options.
 	 */
 	private $options;
 
@@ -35,7 +34,7 @@ class Inpsyde_UserTable_Admin {
 	 *
 	 * @since 1.0.0
 	 * @access private
-	 * @var string  $plugin_name The ID of this plugin.
+	 * @var string $plugin_name The ID of this plugin.
 	 */
 	private $plugin_name;
 
@@ -44,7 +43,7 @@ class Inpsyde_UserTable_Admin {
 	 *
 	 * @since 1.0.0
 	 * @access private
-	 * @var string  $version The current version of this plugin.
+	 * @var string $version The current version of this plugin.
 	 */
 	private $version;
 
@@ -99,6 +98,9 @@ class Inpsyde_UserTable_Admin {
 
 	/**
 	 * Registers settings fields with WordPress
+	 * 
+	 * @since 1.0.0
+	 * @return void
 	 */
 	public function register_fields() {
 
@@ -115,6 +117,7 @@ class Inpsyde_UserTable_Admin {
 	/**
 	 * Creates a text field
 	 *
+	 * @since 1.0.0
 	 * @return void The HTML field
 	 */
 	public function field_text() {
@@ -129,6 +132,9 @@ class Inpsyde_UserTable_Admin {
 
 	/**
 	 * Registers settings sections with WordPress
+	 * 
+	 * @since 1.0.0
+	 * @return void
 	 */
 	public function register_sections() {
 
@@ -144,7 +150,8 @@ class Inpsyde_UserTable_Admin {
 	/**
 	 * Render instructions for our plugin's custom endpoint section.
 	 *
-	 * @return void
+	 * @since 1.0.0
+	 * @return void The label field
 	 */
 	public function field_label() {
 		print 'Enter an arbitrary URL not recognized by WP as a standard URL, like a permalink or 
@@ -184,6 +191,9 @@ class Inpsyde_UserTable_Admin {
 
 	/**
 	 * Sets the class variable $options
+	 * 
+	 * @since 1.0.0
+	 * @return void
 	 */
 	private function set_options() {
 

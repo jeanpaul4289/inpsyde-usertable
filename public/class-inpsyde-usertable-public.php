@@ -70,15 +70,20 @@ class Inpsyde_UserTable_Public {
 	 * Removed the enqueued scripts and stylesheets for the public-facing side of the site.
 	 *
 	 * @since 1.0.0
+	 * @return void
 	 */
 	public function remove_enqueued_scripts_styles() {
-		$pagename = get_query_var( 'pagename' );
-		if ( $pagename === $this->options['ce'] || ( ! $this->options['ce'] && 'usertable' === $pagename ) ) {
-			global $wp_scripts;
-			global $wp_styles;
-			$wp_scripts->queue = array();
-			$wp_styles->queue  = array();
+
+		if ( $this->options ) {
+			$pagename = get_query_var( 'pagename' );
+			if ( $pagename === $this->options['ce'] || ( ! $this->options['ce'] && 'usertable' === $pagename ) ) {
+				global $wp_scripts;
+				global $wp_styles;
+				$wp_scripts->queue = array();
+				$wp_styles->queue  = array();
+			}
 		}
+
 	}
 
 	/**
@@ -120,6 +125,7 @@ class Inpsyde_UserTable_Public {
 	 * @return string
 	 */
 	public function render_user_table( $original_template ) {
+
 		$this->options = get_option( 'ce_name' );
 		$pagename      = get_query_var( 'pagename' );
 
@@ -128,24 +134,30 @@ class Inpsyde_UserTable_Public {
 		} else {
 			return $original_template;
 		}
+
 	}
 
 	/**
 	 * Getting all the users
 	 *
+	 * @since 1.0.0
 	 * @return void
 	 */
 	public function get_users() {
+
 		echo wp_kses( $this->remote_response_handler( $this->users_url ), [] );
 		exit();
+
 	}
 
 	/**
 	 * Getting an specific user
 	 *
+	 * @since 1.0.0
 	 * @return void
 	 */
 	public function get_user() {
+
 		if ( isset( $_POST['user_id'], $_POST['action'], $_POST['user_nonce'] ) ) {
 			if ( wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['user_nonce'] ) ), 'user_nonce' ) ) {
 				$user_id = sanitize_text_field( wp_unslash( $_POST['user_id'] ) ); // input var okay.
@@ -154,15 +166,18 @@ class Inpsyde_UserTable_Public {
 			}
 		}
 		exit();
+
 	}
 
 	/**
-	 * Undocumented function
+	 * Remote response handler for the API endpoint
 	 *
+	 * @since 1.0.0
 	 * @param string $url endpoint url.
 	 * @return string $body response body.
 	 */
 	public function remote_response_handler( $url ) {
+
 		$response = wp_remote_request( $url );
 		$code     = wp_remote_retrieve_response_code( $response );
 		$body     = wp_remote_retrieve_body( $response );
@@ -170,14 +185,18 @@ class Inpsyde_UserTable_Public {
 			$body = 'An error has ocurred.';
 		}
 		return $body;
+
 	}
 
 	/**
 	 * Sets the class variable $options
+	 * 
+	 * @since 1.0.0
+	 * @return void
 	 */
 	private function set_options() {
 
-		$this->options = get_option( $this->plugin_name . '-options' );
+		$this->options = get_option( 'ce_name' );
 
 	}
 
